@@ -7,11 +7,11 @@ contract('VXEContract', (accounts) => {
 
   const ether = 1000000000000000000;  // 10^18
 
-  it.skip("should send defined accounts", () => {
+  it("should send defined accounts", () => {
     assert.notEqual(undefined, accounts);
   });
 
-  it.skip("should be able to deploy VXE contract", () => {
+  it("should be able to deploy VXE contract", () => {
     assert.notEqual(undefined, accounts);
     assert.equal(accounts.length, 10);
 
@@ -20,7 +20,7 @@ contract('VXEContract', (accounts) => {
     });
   });
 
-  it.skip("should be able to change admin", () => {
+  it("should be able to change admin", () => {
     var newAdmin = accounts[3];
     VXEContract.deployed().then(function(vxe) {
       vxe.changeAdmin.call(newAdmin);
@@ -30,7 +30,7 @@ contract('VXEContract', (accounts) => {
     });
   });
 
-  it.skip("should be able to change AccountLevel contract address", () => {
+  it("should be able to change AccountLevel contract address", () => {
     // deploy new AccountLevel
     var previous;
     VXEContract.deployed().then(inst => {
@@ -51,7 +51,7 @@ contract('VXEContract', (accounts) => {
     });
   });
 
-  it.skip("should be able to change FeeAccount address", () => {
+  it("should be able to change FeeAccount address", () => {
     VXEContract.deployed().then(inst => {
       inst.getFeeAccount.call().then(addr => {
         var prev = addr;
@@ -70,7 +70,7 @@ contract('VXEContract', (accounts) => {
     });
   });
 
-  it.skip("should be able to change fee make", () => {
+  it("should be able to change fee make", () => {
     var instance;
     VXEContract.deployed().then(inst => {
       instance = inst;
@@ -91,7 +91,7 @@ contract('VXEContract', (accounts) => {
     });
   });
 
-  it.skip("should be able to change fee take", () => {
+  it("should be able to change fee take", () => {
     var instance;
     VXEContract.deployed().then(inst => {
       instance = inst;
@@ -112,7 +112,7 @@ contract('VXEContract', (accounts) => {
     });    
   });
 
-  it.skip("should be able to change fee rebate", () => {
+  it("should be able to change fee rebate", () => {
     var instance;
     VXEContract.deployed().then(inst => {
       instance = inst;
