@@ -53,28 +53,52 @@ contract VXEContract is Claimable {
   function() {
   }
 
+  function getAdmin () constant returns(address res) {
+    return admin;
+  }
+  
   function changeAdmin(address _admin) onlyAdmin {
     admin = _admin;
   }
 
+  function getAccountLevelsAddr () constant returns(address res) {
+    return accountLevelsAddr;
+  }
+  
   function changeAccountLevelsAddr(address _accountLevelsAddr) onlyAdmin {
     accountLevelsAddr = _accountLevelsAddr;
   }
 
+  function getFeeAccount () constant returns(address res) {
+    return feeAccount;
+  }
+  
   function changeFeeAccount(address _feeAccount) onlyAdmin {
     feeAccount = _feeAccount;
   }
 
+  function getFeeMake () constant returns(uint256 res) {
+    return feeMake;
+  }
+  
   function changeFeeMake(uint256 feeMake_) onlyAdmin {
     assert (feeMake_ < feeMake);
     feeMake = feeMake_;
   }
 
+  function getFeeTake () constant returns(uint256 res) {
+    return feeTake;
+  }
+  
   function changeFeeTake(uint256 _feeTake) onlyAdmin {
     assert (_feeTake < feeTake || _feeTake > feeRebate);
     feeTake = _feeTake;
   }
 
+  function getFeeRebate () constant returns(uint256 res) {
+    return feeRebate;
+  }
+  
   function changeFeeRebate(uint256 _feeRebate) onlyAdmin {
     assert (_feeRebate > feeRebate || _feeRebate < feeTake);
     feeRebate = _feeRebate;

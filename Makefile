@@ -4,8 +4,11 @@
 compile:
 	truffle compile
 
-migrate:
+migrate: compile
 	truffle migrate
+
+test: migrate
+	truffle test
 
 clean:
 	rm -rf build
