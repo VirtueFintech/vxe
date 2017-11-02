@@ -1,4 +1,4 @@
-pragma solidity ^0.4.15;
+pragma solidity ^0.4.17;
 
 library SafeMath {
   function mul(uint256 a, uint256 b) internal constant returns (uint256) {
@@ -412,7 +412,7 @@ contract VXEContract is Claimable {
     bytes32 hash = getHash(_tokenGet, _amountGet, _tokenGive, _amountGive, 
                            _expires, _nonce);
     require ((
-      (orders[_user][hash] || ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == _user) &&
+      (orders[_user][hash] || ecrecover(keccak256("\x19Ethereum Signed Message:\n32", hash),v,r,s) == _user) &&
       block.number <= _expires &&
       orderFills[_user][hash].add(_amount) <= _amountGet
     ));
@@ -463,12 +463,12 @@ contract VXEContract is Claimable {
   function availableVolume(address _tokenGet, uint256 _amountGet, address _tokenGive, 
                            uint256 _amountGive, uint256 _expires, uint256 _nonce, 
                            address _user, uint8 v, bytes32 r, bytes32 s) 
-  constant returns(uint256) {
+  constant  returns(uint256) {
     bytes32 hash = getHash(_tokenGet, _amountGet, _tokenGive, _amountGive, 
                            _expires, _nonce);
     require (
       (orders[_user][hash] || 
-       ecrecover(sha3("\x19Ethereum Signed Message:\n32", hash),v,r,s) == _user) &&
+       ecrecover(keccak256("\x19Ethereum Signed Message:\n32", hash),v,r,s) == _user) &&
       block.number <= _expires
     );
     uint256 available1 = _amountGet.sub(orderFills[_user][hash]);
