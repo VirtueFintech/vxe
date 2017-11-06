@@ -15,14 +15,14 @@ contract('VXEContract', (accounts) => {
     assert.notEqual(undefined, accounts);
     assert.equal(accounts.length, 10);
 
-    VXEContract.deployed().then((inst) => {
-      assert.notEqual(vxe, inst);      
+    VXEContract.new().then((inst) => {
+      assert.notEqual('0x0', inst);      
     });
   });
 
   it("should be able to change admin", () => {
     var newAdmin = accounts[3];
-    VXEContract.deployed().then(function(vxe) {
+    VXEContract.new().then(function(vxe) {
       vxe.changeAdmin.call(newAdmin);
       return vxe.getAdmin.call();
     }).then(function(admin) {
@@ -33,8 +33,8 @@ contract('VXEContract', (accounts) => {
   it("should be able to change AccountLevel contract address", () => {
     // deploy new AccountLevel
     var previous;
-    VXEContract.deployed().then(inst => {
-      AccountLevels.deployed().then(inst => {
+    VXEContract.new().then(inst => {
+      AccountLevels.new().then(inst => {
         previous = inst;
         // change to 0x0;
         vxe.changeAccountLevelsAddr('0x0').then(inst => {
@@ -52,7 +52,7 @@ contract('VXEContract', (accounts) => {
   });
 
   it("should be able to change FeeAccount address", () => {
-    VXEContract.deployed().then(inst => {
+    VXEContract.new().then(inst => {
       inst.getFeeAccount.call().then(addr => {
         var prev = addr;
         inst.changeFeeAccount.call('0x0').then(inst => {
@@ -72,7 +72,7 @@ contract('VXEContract', (accounts) => {
 
   it("should be able to change fee make", () => {
     var instance;
-    VXEContract.deployed().then(inst => {
+    VXEContract.new().then(inst => {
       instance = inst;
       return inst.getFeeMake().call;
     }).then(fee => {
@@ -93,7 +93,7 @@ contract('VXEContract', (accounts) => {
 
   it("should be able to change fee take", () => {
     var instance;
-    VXEContract.deployed().then(inst => {
+    VXEContract.new().then(inst => {
       instance = inst;
       return inst.getFeeTake().call;
     }).then(fee => {
@@ -114,7 +114,7 @@ contract('VXEContract', (accounts) => {
 
   it("should be able to change fee rebate", () => {
     var instance;
-    VXEContract.deployed().then(inst => {
+    VXEContract.new().then(inst => {
       instance = inst;
       return inst.getFeeRebate().call;
     }).then(fee => {
@@ -138,13 +138,13 @@ contract('VXEContract', (accounts) => {
       , amount = 1000000
       , vxe;
 
-    return VXEContract.deployed().then(function(inst) {
+    return VXEContract.new().then(function(inst) {
       // deposit some ether
       vxe = inst;
-      vxe.deposit.call({from: from, amount: amount}).then(console.log)
+      vxe.deposit.call({from: from, amount: amount});
       return vxe.balanceOf.call(0, from);
     }).then(function(balance) {
-      assert.equal(balance, amount + 1);
+      assert.equal(balance.toNumber(), amount);
     });
   });
 
