@@ -1,0 +1,32 @@
+{
+  "name": "vxe_contracts",
+  "version": "1.0.0",
+  "description": "VXE Contracts",
+  "main": "truffle.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VirtueFintech/vxe_contracts.git"
+  },
+  "keywords": [
+    "vxe",
+    "ethereum",
+    "'smart",
+    "contracts'"
+  ],
+  "author": "Hisham Ismail <mhi@virtue.finance>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VirtueFintech/vxe_contracts/issues"
+  },
+  "homepage": "https://github.com/VirtueFintech/vxe_contracts#readme",
+  "dependencies": {
+    "zeppelin-solidity": "^1.3.0"
+  }
+}
